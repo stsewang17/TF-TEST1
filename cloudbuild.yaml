@@ -1,0 +1,27 @@
+steps: 
+- id: "Validate"
+  name: 'hashicorp/terraform:1.0.11'
+  entrypoint: 'sh'
+  args:
+  - '-c'
+  - |
+      terraform init -backend=false
+      terraform validate
+- id: "Plan"
+  name: 'hashicorp/terraform:1.0.11'
+  entrypoint: 'sh'
+  args:
+  - '-c'
+  - |
+      terraform init
+      terraform plan
+- id: "Apply"
+  name: 'hashicorp/terraform:1.0.11'
+  entrypoint: 'sh'
+  args:
+  - '-c'
+  - |
+      terraform init
+      terraform apply -auto-approve
+options:
+  logging: NONE
